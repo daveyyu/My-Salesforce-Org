@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <customHelp>CronKit_Config_Help</customHelp>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>The master batch job record, used by CronKit to spawn Batch Runs.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Batch_Job_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines which batch run handler (Apex trigger) will process batch runs when they are queued in workflow.</inlineHelpText>
+        <label>Batch Job Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CronKit Cleanup Script</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Runs__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Total number of completed batch runs for this batch job.</inlineHelpText>
+        <label>Completed Runs</label>
+        <summaryFilterItems>
+            <field>Batch_Run__c.Completed__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </summaryFilterItems>
+        <summaryForeignKey>Batch_Run__c.Batch_Job__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Field_for_Age_Cutoff__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Date field to use in selecting records to be deleted.</inlineHelpText>
+        <label>Date Filter Field</label>
+        <picklist>
+            <controllingField>Records_To_Clean__c</controllingField>
+            <picklistValues>
+                <fullName>CreatedDate</fullName>
+                <controllingFieldValues>Completed CronKit Batch Runs</controllingFieldValues>
+                <controllingFieldValues>Events</controllingFieldValues>
+                <controllingFieldValues>Tasks</controllingFieldValues>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>StartDateTime</fullName>
+                <controllingFieldValues>Events</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EndDateTime</fullName>
+                <controllingFieldValues>Events</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LastModifiedDate</fullName>
+                <controllingFieldValues>Completed CronKit Batch Runs</controllingFieldValues>
+                <controllingFieldValues>Events</controllingFieldValues>
+                <controllingFieldValues>Tasks</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed__c</fullName>
+                <controllingFieldValues>Completed CronKit Batch Runs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled_To_Run__c</fullName>
+                <controllingFieldValues>Completed CronKit Batch Runs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Days__c</fullName>
+        <defaultValue>-1</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The age records should be (in days) before they can be deleted. Set this value to 0 to remove records of any age.</inlineHelpText>
+        <label>Age Cutoff</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Matching_String__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>String or substring to use with the Name/Subject Filter.</inlineHelpText>
+        <label>Name String or Substring</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Name_Filter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Filter to to apply to the name or subject of the records being selected for removal.</inlineHelpText>
+        <label>Name/Subject Filter</label>
+        <picklist>
+            <picklistValues>
+                <fullName>--Any Name Value--</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Name Is Equal To</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Name Starts With</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Name Contains</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Records_To_Clean__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Records to Clean</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Completed CronKit Batch Runs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tasks</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Events</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Run_Every_Units__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Unit of measure for the wait time between batch runs.</inlineHelpText>
+        <label>Day/Week</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Hours</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Days</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Run_Every__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The amount of time to wait between batch runs.  The value in this field is copied to the first Batch Run object when a new batch run is started.  Subsequent batch runs will have the same Run Every value as the previous batch run.</inlineHelpText>
+        <label>Run Every</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Task_Status_Filter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>If cleaning Tasks, this field can be used to filter the records by task status.</inlineHelpText>
+        <label>Task Status Filter</label>
+        <picklist>
+            <picklistValues>
+                <fullName>--Any Status Value--</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unfinished_Runs__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Total number of batch runs that have not yet completed.</inlineHelpText>
+        <label>Unfinished Runs</label>
+        <summaryFilterItems>
+            <field>Batch_Run__c.Completed__c</field>
+            <operation>equals</operation>
+            <value></value>
+        </summaryFilterItems>
+        <summaryForeignKey>Batch_Run__c.Batch_Job__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <label>Batch Job</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Run_Every__c</columns>
+        <columns>Run_Every_Units__c</columns>
+        <columns>Completed_Runs__c</columns>
+        <columns>Unfinished_Runs__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Batch Job Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Batch Jobs</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Run_Every__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Run_Every_Units__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Completed_Runs__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Unfinished_Runs__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Run_Every__c</searchFilterFields>
+        <searchFilterFields>Run_Every_Units__c</searchFilterFields>
+        <searchFilterFields>OWNER.ALIAS</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Require_Name_Filter_Setting</fullName>
+        <active>true</active>
+        <description>Requires that a name/subject filter setting be provided for Cleanup Script batch jobs.</description>
+        <errorConditionFormula>AND (ISPICKVAL( Batch_Job_Type__c , &quot;CronKit Cleanup Script&quot;), ISPICKVAL( Record_Name_Filter__c  ,&quot;&quot;))</errorConditionFormula>
+        <errorDisplayField>Record_Name_Filter__c</errorDisplayField>
+        <errorMessage>Please select a name/subject filtering option.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Records_to_Clean</fullName>
+        <active>true</active>
+        <description>Requires parms for CronKit Cleanup Script</description>
+        <errorConditionFormula>AND(ISPICKVAL( Batch_Job_Type__c  , &quot;CronKit Cleanup Script&quot;) , ISPICKVAL( Records_To_Clean__c  , &quot;&quot;))</errorConditionFormula>
+        <errorDisplayField>Records_To_Clean__c</errorDisplayField>
+        <errorMessage>Cleanup Script parameters are required on records with this Batch Job Type.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Task_Status_Filter</fullName>
+        <active>true</active>
+        <description>Requires that a task status filter value be provided when cleaning Task records.</description>
+        <errorConditionFormula>AND(ISPICKVAL( Records_To_Clean__c, &apos;Tasks&apos;) , ISPICKVAL( Task_Status_Filter__c ,&quot;&quot;))</errorConditionFormula>
+        <errorDisplayField>Task_Status_Filter__c</errorDisplayField>
+        <errorMessage>Please choose a Task Status filter value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_cutoff_value</fullName>
+        <active>true</active>
+        <description>Requires a cutoff value when job type is &apos;CronKit Cleanup Script&apos;</description>
+        <errorConditionFormula>AND (ISPICKVAL(  Batch_Job_Type__c  ,&quot;CronKit Cleanup Script&quot;),( Number_of_Days__c &lt;0))</errorConditionFormula>
+        <errorDisplayField>Number_of_Days__c</errorDisplayField>
+        <errorMessage>Please enter a non-negative number.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_name_string</fullName>
+        <active>true</active>
+        <description>Prevents the user from entering a null string when cleaning records based on record name or subject.</description>
+        <errorConditionFormula>AND (ISPICKVAL( Batch_Job_Type__c ,&quot;CronKit Cleanup Script&quot;), NOT(ISPICKVAL( Record_Name_Filter__c  , &apos;--Any Name Value--&apos;)),  (LEN( Record_Matching_String__c )=0))</errorConditionFormula>
+        <errorDisplayField>Record_Matching_String__c</errorDisplayField>
+        <errorMessage>String must be 1 or more characters in length.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Start_Batch_Run</fullName>
+        <availability>online</availability>
+        <description>Creates a new batch run and schedules it.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Start Batch Run</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/13.0/connection.js&quot;)}
+
+var newRecords = [];
+ 
+var c = new sforce.SObject(&quot;cron__Batch_Run__c&quot;);
+
+if (&quot;{!Batch_Job__c.Batch_Job_Type__c}&quot; == &quot;&quot;) {
+  alert(&quot;Please select a batch job type. &quot;); 
+} else {
+c.cron__Trigger_Batch_Run__c = true;
+c.cron__Batch_Job_Name__c = &quot;{!Batch_Job__c.Name}&quot;;
+c.cron__Run_Every__c = {!Batch_Job__c.Run_Every__c};
+c.cron__Run_Every_Units__c = &quot;{!Batch_Job__c.Run_Every_Units__c}&quot;;
+c.cron__Batch_Job__c = &quot;{!Batch_Job__c.Id}&quot;;
+c.cron__Batch_Job_Type__c = &quot;{!Batch_Job__c.Batch_Job_Type__c}&quot;;
+newRecords.push(c);
+
+result = sforce.connection.create(newRecords);
+
+window.location.reload();
+}</url>
+    </webLinks>
+</CustomObject>

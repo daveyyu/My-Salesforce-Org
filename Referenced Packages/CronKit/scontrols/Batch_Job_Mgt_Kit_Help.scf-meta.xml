@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Batch Job tab getting started contents</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>Batch_Job_Mgt_Kit_Help</fileName>
+    <name>Batch Job Mgt Kit Help</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

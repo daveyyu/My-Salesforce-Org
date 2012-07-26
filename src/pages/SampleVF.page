@@ -1,0 +1,21 @@
+<apex:page standardController="Account" extensions="SampleClass" id="page">
+    <apex:form id="theForm">
+		<apex:pageBlock id="pb1">
+			<apex:pageBlockSection columns="1">
+				{!disp}
+                <apex:pageBlockTable value="{!tempList}" var="cwl" width="100%">
+                    <apex:column headervalue="Contact Name" width="15%">
+                    	<apex:outputLink value="/{!cwl.Id}" target="_parent">{!cwl.Name}</apex:outputLink>
+                    </apex:column>
+                     <apex:column headerValue="Title" width="20%">
+                        <apex:outputText value="{!cwl.Title}"/>
+                    </apex:column>
+                     <apex:column headerValue="Email" width="20%">
+                        <apex:outputText value="{!cwl.Email}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+                	 <apex:outputLink target="_parent" value="/apex/ContactshowAll?id={!accId}" rendered="{!gotolist}">Go to List ({!size})</apex:outputLink> 
+            </apex:pageBlockSection> 
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
